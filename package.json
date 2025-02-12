@@ -1,0 +1,22 @@
+{
+  "name": "pixel-perfect-custom-element",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pixel-perfect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkarpieszuk/pixel-perfect-custom-element.git"
+  },
+  "keywords": [
+    "custom-element"
+  ],
+  "author": "Konrad Karpieszuk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kkarpieszuk/pixel-perfect-custom-element/issues"
+  },
+  "homepage": "https://github.com/kkarpieszuk/pixel-perfect-custom-element#readme"
+}
