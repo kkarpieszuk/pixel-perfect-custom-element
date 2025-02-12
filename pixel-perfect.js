@@ -126,12 +126,14 @@ class PixelPerfect extends HTMLElement {
 		const shadow = this.attachShadow({ mode: 'open' });
 		shadow.appendChild(template.content.cloneNode(true));
 
-		this.invertVal = 0;
+		this.invertVal = localStorage.getItem('pixelPerfectInvert') || 0;
 
 		this.dialogElement = this.shadowRoot.querySelector('.dialog');
 		this.imageElement = this.shadowRoot.querySelector('.image-preview');
 		this.replaceImageInput = this.shadowRoot.querySelector('.replace-image');
 		this.opacitySlider = this.shadowRoot.querySelector('.opacity-slider');
+
+		this.imageElement.style.filter = `invert(${this.invertVal})`;
 
 		this.opacitySlider.style.setProperty('--value', this.opacitySlider.value);
 
@@ -139,9 +141,15 @@ class PixelPerfect extends HTMLElement {
 			this.revertColors();
 		});
 
+		this.imageElement.style.opacity = localStorage.getItem('pixelPerfectOpacity');
+		this.opacitySlider.style.setProperty('--value', this.imageElement.style.opacity);
+		this.opacitySlider.value = this.imageElement.style.opacity;
+
 		this.opacitySlider.addEventListener('input', (e) => {
 			this.imageElement.style.opacity = e.target.value;
 			e.target.style.setProperty('--value', e.target.value);
+
+			localStorage.setItem('pixelPerfectOpacity', e.target.value);
 		});
 
 		this.shadowRoot.querySelector('.trigger-upload').addEventListener('click', () => {
@@ -252,9 +260,11 @@ class PixelPerfect extends HTMLElement {
 	}
 
 	revertColors() {
-		this.invertVal = this.invertVal === 1 ? 0 : 1;
+		this.invertVal = Number(this.invertVal) === 1 ? 0 : 1;
 
 		this.imageElement.style.filter = `invert(${this.invertVal})`;
+
+		localStorage.setItem('pixelPerfectInvert', this.invertVal);
 	}
 
 	setupDragging() {
