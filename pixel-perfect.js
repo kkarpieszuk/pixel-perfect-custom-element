@@ -36,6 +36,7 @@ template.innerHTML = `
 				justify-content: center;
 				align-items: center;
 				padding: 0.3em;
+				outline: none;
 
 				cursor: move;
 				user-select: none;
